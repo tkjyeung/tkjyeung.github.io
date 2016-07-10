@@ -30,7 +30,7 @@ for i in range(0,76):
 
 ![]({{ site.baseurl }}/images/config_test1111111111111111111.png)
 
-![]({{ site.baseurl }}/images/track_rank_table.png)
+![](https://raw.githubusercontent.com/tkjyeung/tkjyeung.github.io/e8b87b6b126bd1736c4550fdf7c87cd5d42cea94/images/track_rank_table.PNG)
 
 
 ## Step 3: Visualize your data.
