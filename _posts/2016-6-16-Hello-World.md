@@ -26,7 +26,8 @@ for i in range(0,76):
         track_rank_table.ix[j,'date'] = df_clean.ix[k, 'date_entered'] + datetime.timedelta(days = (7*(i)))
         k = k + 1
 ```
-![](C:/Users/user/DataBox/DSI_JY/DSI-projects/projects/project-02/assets/track_rank_table.png)
+
+![]({{ site.baseurl }}/images/track_rank_table.png)
 
 
 ## Step 3: Visualize your data.
