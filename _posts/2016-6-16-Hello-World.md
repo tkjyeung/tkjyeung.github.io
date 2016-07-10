@@ -34,10 +34,28 @@ for i in range(0,76):
 
 ## Step 3: Visualize your data.
 
-
+- Since there are way too many tracks. I just plotted the tracks which has reached top 1 and their trend developments.
 
 ![]({{ site.baseurl }}/images/track-rank-by-week.JPG)
 
+- Let's explore audience taste trend over the year 2000.
+
+![]({{ site.baseurl }}/images/time.JPG)
+
+- This shows that people favour shorter and shorter time tracks towards year end.
+
+![]({{ site.baseurl }}/images/track_word_len.JPG)
+
+- Shorter track name works better towards year end.
+
+![]({{ site.baseurl }}/images/artist_word_len.JPG)
+
+- Artist name length does not matter.
+
+![]({{ site.baseurl }}/images/artist_on_billboard.JPG)
+
+- Due to too many tracks cluttering the bar graph, I decided to set minimum to be at least 50 occurances.
+Destiny's Child appears most the billboard in 2000. Creed is 2nd place.
 
 ## Step 4: Create a Problem Statement.
 
