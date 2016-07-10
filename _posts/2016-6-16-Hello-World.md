@@ -27,6 +27,9 @@ for i in range(0,76):
         k = k + 1
 ```
 
+
+![_config.yml]({{ site.baseurl }}/images/config.png)
+
 ![]({{ site.baseurl }}/images/track_rank_table.png)
 
 
