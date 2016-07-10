@@ -29,10 +29,14 @@ for i in range(0,76):
 
 ![](https://raw.githubusercontent.com/tkjyeung/tkjyeung.github.io/e8b87b6b126bd1736c4550fdf7c87cd5d42cea94/images/track_rank_table.PNG)
 
-![]({{ site.baseurl }}/images/track_rank_table.png)
-![](https://raw.githubusercontent.com/tkjyeung/tkjyeung.github.io/e8b87b6b126bd1736c4550fdf7c87cd5d42cea94/images/track_rank_table.PNG)
+- We are only interested in year 2000 billboard and also need to clean nan rank track rows.
+- track\_rank\_table\_info\_clean only has the track info which is within year 2000 and zero nan rank track.
 
 ## Step 3: Visualize your data.
+
+
+
+![]({{ site.baseurl }}/images/track-rank-by-week.JPG)
 
 
 ## Step 4: Create a Problem Statement.
