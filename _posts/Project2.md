@@ -1,6 +1,7 @@
 ---
 layout: post
 title: DSI-HK-1
+permalink: /project2/
 ---
 
 This is the second project.
