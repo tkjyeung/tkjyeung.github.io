@@ -1,0 +1,124 @@
+---
+layout: post
+title: DSI-HK-1
+---
+
+This is the third project.
+
+## Step 1: Exploring your data.
+- The data is about the Year 2000 billboard (top 100 tracks).
+- There are 316 tracks, with year, artist, track name, time, genre, date entered, date peaked, and rank from 1st to 76th week.
+- It has when the track was entered and when it exited the billboard. Jay\_z has the most tracks (5 tracks) which entered the billboard. There are 228 artists which has entered the billboard. There are 10 types of genre of music with Rock being most popular. There are songs which entered the billboard in 1999 and exited 2000 and also entered in 2000 and exited in 2001.
+- I found that all dates are Saturdays.
+
+## Step 2: Clean your data.
+- I found that for the year column it is all 2000, so we can drop this column.
+- I cleaned the titles such as 'date.entered' becomes 'date\_entered', 'x1st.week' becomes 'week\_1'.
+- There is a track which has identical name by two different artists. So, I append the artist name after the track name.
+- When I melted the table into three columns 'track', 'week', and 'rank', I change the 'week' into integer. 
+- I also added the 'date' column, so week 1 will be the date entered and week 2 will be the date entered plus 7 days.
+
+```python
+track_rank_table['date'] = np.array([None]*len(track_rank_table))
+for i in range(0,76):
+    k = 0
+    for j in range(len(df_clean)*i, len(df_clean)*(i+1)):       
+        track_rank_table.ix[j,'date'] = df_clean.ix[k, 'date_entered'] + datetime.timedelta(days = (7*(i)))
+        k = k + 1
+```
+
+![](https://raw.githubusercontent.com/tkjyeung/tkjyeung.github.io/e8b87b6b126bd1736c4550fdf7c87cd5d42cea94/images/track_rank_table.PNG)
+
+- We are only interested in year 2000 billboard and also need to clean nan rank track rows.
+- track\_rank\_table\_info\_clean only has the track info which is within year 2000 and zero nan rank track.
+
+## Step 3: Visualize your data.
+
+- Since there are way too many tracks. I just plotted the tracks which has reached top 1 and their trend developments.
+
+![]({{ site.baseurl }}/images/track-rank-by-week.JPG)
+
+- Let's explore audience taste trend over the year 2000.
+
+![]({{ site.baseurl }}/images/time.JPG)
+
+- This shows that people favour shorter and shorter time tracks towards year end.
+
+![]({{ site.baseurl }}/images/track_word_len.JPG)
+
+- Shorter track name works better towards year end.
+
+![]({{ site.baseurl }}/images/artist_word_len.JPG)
+
+- Artist name length does not matter.
+
+![]({{ site.baseurl }}/images/artist_on_billboard.JPG)
+
+- Due to too many tracks cluttering the bar graph, I decided to set minimum to be at least 50 occurances.
+Destiny's Child appears most the billboard in 2000. Creed is 2nd place.
+
+
+![]({{ site.baseurl }}/images/top3_artist.JPG)
+
+- Destiny's Child appears most in top 3 in 2000. Oh, however Creed is way lower if we just count top 3, ie he was on the billboard a lot but struggled to stay in top 3.
+
+![]({{ site.baseurl }}/images/top1_artist.JPG)
+
+- Santana and Destiny's Child both tied when counting just number one, followed by Christina Aguilera.
+
+![]({{ site.baseurl }}/images/top3_track.JPG)
+
+- It seems Maria, Maria by Santana was on the top 3 the longest in 2000 followed by Breathe by Hill, Faith.
+
+![]({{ site.baseurl }}/images/top1_track.JPG)
+
+- Top 1 track is a bit different in distribution, but Maria, Maria was top 1 for 10 weeks.
+
+![]({{ site.baseurl }}/images/top1_duration_time_to.JPG)
+
+- This tells us the real hit Top 1 forever tracks usually took very short time to get there. So for music companies, if the track fails, let it fail fast.
+
+![]({{ site.baseurl }}/images/week_to_peak_vs_duration.JPG)
+
+- So, from the above chart, the longer the track stays in the billboard, the longer the 'week_to_peak', ie it takes time to reach the peak, but the peak can be low. The bottom right tracks are the ones which peak early but last long in the billboard, and usually have higher rank like Maria' Maria.
+
+![]({{ site.baseurl }}/images/genre_len.JPG)
+
+- Jazz is the most lengthy genre.
+
+![]({{ site.baseurl }}/images/genre_pie.JPG)
+
+- Rock genre appeared on the billboard in 2000 the most, followed by Country and then Rap.
+
+![]({{ site.baseurl }}/images/genre_perc.JPG)
+
+- Reggae and Gospel seem to kick in the billboard as we approach end of 2000. Pop and Electonica lost market share. Country is growing market share.
+
+
+## Step 4: Create a Problem Statement.
+
+Main goal of the project is to find any pattern in the billboard.
+- taste of the audience in many aspects
+- how Top 1 and Top 3 tracks behaved
+
+Let's rebuild the billboard by week. After that, I found out that for the earlier weeks of 2000, some tracks are missing, ie I cannot find Week 1 rank 1 has any track.
+- I actually went to the billboard website and found that I am right. I think it is missing some tracks which entered in 1999 but still existed in 2000 such as Santana's Smooth which is number 1 in 2000/01/01
+- We explored that there are 228 unique artists and 316 tracks which particiapted in the 2000 billboard top 100
+- We charted the Top 1 tracks and their development from start to end.
+- Rock was the most favouriate and was top 1 for 46 weeks.
+- as the year 2000 progressed, audience like shorter time tracks and also shorter name for tracks.
+- As an artist, Destiny Child occupied the billboard the most with 3 songs, and also occupied top 3 the most.
+- Top 1 artist wise, Santana tied with Destiny Child, but with only one track 'Maria, Maria', which was top 3 for 14 weeks and Top 1 for 10 weeks.
+- Definitely, Santana's 'Maria, Maria' is the most popular song in 2000.
+- We also found out that usually the shortest it took to reach Top 1 (ie, highest popularity momentum), the longer the track stayed on Top 1.
+- Jazz is the genre which is longest time.
+- Audience got more diverse in taste with more genre like Reggae and Gospel as we went further months of 2000.
+
+## Step 5: Brainstorm your Approach.
+
+I took two approaches. Initially I did not learn enough nor familiar enough with melt and its usage, I went for crazy looping which took super long. Then after the Friday class, I suddenly realize that there is a shorter and more succinct way to recreate the billboard by date.
+
+- I initially did the melt as was asked in this project.
+- then, did a loop of loop by assigning the date_entered for each track for its week 1 and recorded in the 'date' column
+- this loop of loop also, can increment week, ie the field 'date' for week 2 for the same track will be the 'date' for week 1 plus 7 days
+- after redoing the real week rank, it was way easier to manipulate the data using groupby and merge and then chart
